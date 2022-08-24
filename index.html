@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./assets/style.css" />
+    <!-- CHANGE TITLE!!! -->
+    <title>Quiz</title>
+</head>
+
+<body>
+    <header class="hide-header">
+        <h1 class="main-header"> Welcome To Your Code Quiz!</h1>
+        <p> Hello there! Let's play a game 😈. You are presented with 5 questions. 
+            Every question you get wrong will be deducted from
+            the timer. You will have 40 seconds to play the game. Every question you get 
+            right will just boost your ego. Good luck and let the games begin! Click 'Begin'
+            if you wish to proceed.</p>
+        <button class="begin-btn">Begin</button>   
+    </header>
+
+<main>
+    <section class="quiz">
+        <h2 class="question"></h2>
+        <ul id="option">
+            <li><button class="button-1"></button></li>
+            <li><button class="button-2"></button></li>
+            <li><button class="button-3"></button></li>
+            <li><button class="button-4"></button></li>
+        </ul>
+        <h4 id="answer"></h4>
+    </section>
+
+    <section class="count-down">
+        <h4>Timer:</h4>
+        <div id="timer">40</div>
+    </section>
+
+    <section class="high-score">
+        <button class="score">View Your High Score</button>
+        <ul id="list-score"></ul>
+    </section>
+
+    <section class="initial-input">
+        <h2>Put your initials to save your scores!</h2>
+    <form>
+        <label>Enter your initials: </label>
+        <input type="text" id="initials" name="input"></input>
+        <br>
+        <button class="save-btn">Save</button>
+        <button class="restart-btn">Restart</button>
+    </form>
+    </section>
+</main>
+
+<script src="./js/script.js"></script>
+
+</body>
+</html>
