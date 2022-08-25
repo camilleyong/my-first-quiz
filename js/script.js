@@ -11,16 +11,24 @@ var optionTwo = document.querySelector(".button-2");
 var optionThree = document.querySelector(".button-3");
 var optionFour = document.querySelector(".button-4");
 var highScore = document.querySelector(".high-score")
+var finalScore = document.querySelector("#userScore");
+var list = document.querySelector("#list-score");
 var userInput = document.querySelector(".initial-input");
 var userTime = document.querySelector("#timer");
+var userSave = document.querySelector(".save-btn");
 var restartBtn = document.querySelector(".restart-btn")
 var hideHeader = document.querySelector(".hide-header");
+var userHighScore = document.querySelector(".score");
 
 // GLOBAL
 var timer = 40;
 var userAnswer;
 var currentQuestion = 0;
-var lastQuestion = theQuestions - 1;
+var nextQuestion;
+
+// LOCAL STORAGE
+//  = localStorage.getItem ("current-score")
+//  = localStorage.getItem ("current-highscore");
 
 
 // QUESTIONS OF ARRAYS
@@ -101,48 +109,74 @@ function setNextQuestion () {
     optionFour.textContent=theQuestions[currentQuestion].optionD;
 }
 
-// CLICK RIGHT ANSWER
-function theQuiz (){
-    if (currentQuestion < lastQuestion){
-        currentQuestion++;
-        setNextQuestion();
-    }
-    else {
-        endGame();
-    }
-}
-
+// RIGHT ANSWER
 userOption.addEventListener("click" , correctAnswer)
 function correctAnswer(event) {
-    userQuestion = theQuestions[currentQuestion].rightAnswer;
+var currentCorrectAnswer = theQuestions[currentQuestion].rightAnswer;
     if (event.target.matches("button") ){
   
-      if (event.target.textContent === userOption){
+      if (event.target.textContent === currentCorrectAnswer){
+        console.log("correct");
         theQuiz();
       } else {
+        console.log("incorrect");
         timer = timer - 5;
         theQuiz();
       }
     }
   }
 
-function endGame () {
-
+//  NEXT QUESTION
+function theQuiz (){
+    if (currentQuestion < 4){
+        currentQuestion++;
+        console.log("increase question count");
+        setNextQuestion();
+    }
+    else {
+        console.log("no more questions");
+        endGame();
+    }
 }
 
 
-// function viewScore() {
-    
-// }
+
+function endGame () {
+    userInput.setAttribute("style" , "display: flex");
+    userQuiz.setAttribute("style" , "display: none");
+    finalScore.textContent = timer;
+}
 
 
+function viewScore() {
+    userInput.setAttribute("style" , "display: none");
+    highScore.setAttribute("style" , "display: block");
+    hideHeader.setAttribute("style" , "display: none");
+    var userlist = localStorage.getItem ("timer");
+    var userInitials = localStorage.getItem ("initials");
+    var userList1 = document.createElement("li");
+    var userInitials1 = document.createElement("li");
+    userList1.textContent = userlist;
+    userInitials1.textContent = userInitials;
+    console.log(userlist);
+    console.log(userInitials);
 
-// STORE SCORE
-// function storedScore () {
-//     highScore = localStorage.getItem("Your Current High Score");
-//     if (highScore === null) {
-//         highScore = 0;
-//     } else {
-//         highScore = highScore;
-//     }
-// })
+    list.appendChild(userList1);
+    list.appendChild(userInitials1);
+    console.log("score");
+}
+userHighScore.addEventListener("click" , viewScore);
+
+userSave.addEventListener("click" , saveScore);
+
+function saveScore (event){
+    event.preventDefault();
+    var initials = document.querySelector("#initials").value;
+    localStorage.setItem ("initials" ,  initials);
+    localStorage.setItem("timer" , timer);
+
+    viewScore();
+
+    console.log("help");
+}
+

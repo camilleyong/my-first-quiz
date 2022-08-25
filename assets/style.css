@@ -147,7 +147,21 @@ h4 {
     background-color: white;
 }
 
+#list-score {
+    display: none;
+}
+
+.final-score p{
+    text-align: center;
+}
+
 /* INITIALS AND SAVE AND GO BACK */
+.initial-input {
+    display: flex;
+    justify-content: center;
+    padding: 60px;
+}
+
 h2 {
     padding-bottom: 5px;
 }
